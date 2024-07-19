@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('images/gsms background.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        form {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555555;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="login-form">
+        <h1>Login</h1>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <button type="submit">Login</button>
+        <p>Don't have an account? <a href="#" id="register-link">Register</a></p>
+    </form>
+
+    <form id="register-form" style="display: none;">
+        <h1>Register</h1>
+        <label for="new-username">New Username:</label>
+        <input type="text" id="new-username" name="new-username" required><br>
+        <label for="new-password">New Password:</label>
+        <input type="password" id="new-password" name="new-password" required><br>
+        <button type="submit">Register</button>
+        <p>Already have an account? <a href="#" id="login-link">Login</a></p>
+    </form>
+
+    <script>
+        var users = [];
+
+        document.getElementById("login-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            var authenticated = authenticateUser(username, password);
+
+            if (authenticated) {
+                window.location.href = "index.html";
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        });
+
+        function authenticateUser(username, password) {
+
+            var user = users.find(function (user) {
+                return user.username === username && user.password === password;
+            });
+
+            return !!user; e
+        }
+
+        document.getElementById("register-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var newUsername = document.getElementById("new-username").value;
+            var newPassword = document.getElementById("new-password").value;
+
+
+            var existingUser = users.find(function (user) {
+                return user.username === newUsername;
+            });
+
+            if (existingUser) {
+                alert("Username already exists. Please choose a different one.");
+            } else {
+
+                users.push({ username: newUsername, password: newPassword });
+                alert("Registration successful. You can now log in.");
+
+                document.getElementById("register-form").reset();
+
+                document.getElementById("register-form").style.display = "none";
+                document.getElementById("login-form").style.display = "block";
+            }
+        });
+
+        document.getElementById("register-link").addEventListener("click", function (event) {
+            event.preventDefault();
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("register-form").style.display = "block";
+        });
+
+        document.getElementById("login-link").addEventListener("click", function (event) {
+            event.preventDefault();
+            document.getElementById("register-form").style.display = "none";
+            document.getElementById("login-form").style.display = "block";
+        });
+    </script>
+</body>
+
+</html>

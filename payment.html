@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .qr-code {
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .qr-code img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="main">
+        <div class="container">
+
+            <button onclick="redirectToMainPage()">Back to Main Page</button>
+        </div>
+    </main>
+    <div class="container">
+        <h2>Choose Payment Method</h2>
+        <form id="payment-form" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="payment-method">Payment Method</label>
+                <select id="payment-method" name="payment-method">
+                    <option value="cash-on-delivery">Cash on Delivery</option>
+                    <option value="upi-payment">UPI Payment</option>
+                </select>
+            </div>
+            <div class="form-group" id="additional-instructions-container">
+                <label for="additional-instructions">Additional Instructions</label>
+                <textarea id="additional-instructions" name="additional-instructions" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address">
+            </div>
+            <button type="submit">Submit Payment</button>
+        </form>
+
+
+        <div class="qr-code" id="qr-code">
+            <img src="Images/QR Code.jpg" alt="UPI QR Code">
+        </div>
+    </div>
+
+    <script>
+
+        const paymentMethodSelect = document.getElementById("payment-method");
+        const qrCodeContainer = document.getElementById("qr-code");
+        const additionalInstructionsContainer = document.getElementById("additional-instructions-container");
+
+
+        paymentMethodSelect.addEventListener("change", function () {
+            if (this.value === "upi-payment") {
+                qrCodeContainer.style.display = "block";
+                additionalInstructionsContainer.style.display = "none";
+            } else {
+                qrCodeContainer.style.display = "none";
+                additionalInstructionsContainer.style.display = "block";
+            }
+        });
+
+        function redirectToMainPage() {
+            window.location.href = "index.html";
+        }
+
+        function validateForm() {
+            const addressInput = document.getElementById("address");
+
+
+            if (!addressInput.value.trim()) {
+                alert("Please enter your address.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+
+</html>

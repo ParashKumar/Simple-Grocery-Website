@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        .product-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Parash Grocery Store</h1>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about_us.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="contact_us.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item">
+                        <button onclick="redirectToPaymentPage()" class="payment-button">Go to Payment</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+
+            <div class="dropdown">
+                <button class="btn btn-filter" onclick="toggleDropdown()">Filter</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="filterProducts('fruits-vegetables')">Fruits and Vegetables</a>
+                    <a href="#" onclick="filterProducts('beverages')">Beverages</a>
+                    <a href="#" onclick="filterProducts('beauty')">Beauty</a>
+                    <a href="#" onclick="filterProducts('kitchen-garden')">Kitchen and Garden</a>
+                    <a href="#" onclick="filterProducts('food-grains-oils')">Food grains and Oils</a>
+                    <a href="#" onclick="resetFilter()">Reset Filter</a>
+                </div>
+            </div>
+            <div class="product-grid">
+
+                <div class="product-card fruits-vegetables">
+                    <img src="Images/Capsicum-Green.jpeg" alt="Capsicum-Green" class="product-image">
+                    <h3 class="product-title">Capsicum-Green</h3>
+                    <span class="product-price">₹68</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card fruits-vegetables">
+                    <img src="Images/Carrot.jpg" alt="Carrot" class="product-image">
+                    <h3 class="product-title">Carrot</h3>
+                    <span class="product-price">₹66</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card fruits-vegetables">
+                    <img src="Images/Cauliflower.jpg" alt="Cauliflower" class="product-image">
+                    <h3 class="product-title">Cauliflower</h3>
+                    <span class="product-price">₹29</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card fruits-vegetables">
+                    <img src="Images/Strawberry.jpeg" alt="Strawberry" class="product-image">
+                    <h3 class="product-title">Strawberry</h3>
+                    <span class="product-price">₹41</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card fruits-vegetables">
+                    <img src="Images/Kiwi.jpeg" alt="Kiwi" class="product-image">
+                    <h3 class="product-title">Kiwi</h3>
+                    <span class="product-price">₹41</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card beverages">
+                    <img src="Images/natural-mineral-water.jpeg" alt="Natural Mineral Water" class="product-image">
+                    <h3 class="product-title">Natural Mineral Water</h3>
+                    <span class="product-price">₹72</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card beverages">
+                    <img src="Images/Red label.jpg" alt="Red Label" class="product-image">
+                    <h3 class="product-title">Red Label</h3>
+                    <span class="product-price">₹130</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card beverages">
+                    <img src="Images/Mango Fruit Drink.jpg" alt="Mango Fruit Drink" class="product-image">
+                    <h3 class="product-title">Mango Fruit Drink</h3>
+                    <span class="product-price">₹115</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card beverages">
+                    <img src="Images/Sprite.jpeg" alt="Sprite" class="product-image">
+                    <h3 class="product-title">Sprite</h3>
+                    <span class="product-price">₹95</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card beauty">
+                    <img src="Images/Dove.jpg" alt="Dove" class="product-image">
+                    <h3 class="product-title">Dove</h3>
+                    <span class="product-price">₹35</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card beauty">
+                    <img src="Images/Coconut Oil.jpg" alt="Coconut Oil" class="product-image">
+                    <h3 class="product-title">Coconut Oil</h3>
+                    <span class="product-price">₹114</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card beauty">
+                    <img src="Images/Colgate.jpeg" alt="Colgate" class="product-image">
+                    <h3 class="product-title">Colgate</h3>
+                    <span class="product-price">₹100</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card beauty">
+                    <img src="Images/Sunsilk Shampoo.jpg" alt="Sunsilk Shampoo" class="product-image">
+                    <h3 class="product-title">Sunsilk Shampoo</h3>
+                    <span class="product-price">₹125</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card beauty">
+                    <img src="Images/Pears.jpeg" alt="Pears" class="product-image">
+                    <h3 class="product-title">Pears</h3>
+                    <span class="product-price">₹40</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card kitchen-garden">
+                    <img src="Images/Induction Cooker.jpg" alt="Induction Cooker" class="product-image">
+                    <h3 class="product-title">Induction Cooker</h3>
+                    <span class="product-price">₹699</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card kitchen-garden">
+                    <img src="Images/ChoppingCutting Board.jpg" alt="Chopping/Cutting Board" class="product-image">
+                    <h3 class="product-title">Chopping/Cutting Board</h3>
+                    <span class="product-price">₹169</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card kitchen-garden">
+                    <img src="Images/Vermi Compost - Organic Manure.jpeg" alt="Vermi Compost - Organic Manure"
+                        class="product-image">
+                    <h3 class="product-title">Vermi Compost - Organic Manure</h3>
+                    <span class="product-price">₹159</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card kitchen-garden">
+                    <img src="Images/Dry Pet Food - DOGS.jpg" alt="Dry Pet Food - DOGS" class="product-image">
+                    <h3 class="product-title">Dry Pet Food - DOGS</h3>
+                    <span class="product-price">₹653</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card kitchen-garden">
+                    <img src="Images/cat treats.jpeg" alt="Cat Treat" class="product-image">
+                    <h3 class="product-title">Cat Treat</h3>
+                    <span class="product-price">₹409</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <div class="product-card food-grains-oils">
+                    <img src="Images/Pure Ghee.jpg" alt="Pure Ghee" class="product-image">
+                    <h3 class="product-title">Pure Ghee</h3>
+                    <span class="product-price">₹149</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card food-grains-oils">
+                    <img src="Images/Whole Wheat Atta.jpeg" alt="Whole Wheat Atta" class="product-image">
+                    <h3 class="product-title">Whole Wheat Atta</h3>
+                    <span class="product-price">₹430</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card food-grains-oils">
+                    <img src="Images/besan fine.jpeg" alt="Besan Fine" class="product-image">
+                    <h3 class="product-title">Besan Fine</h3>
+                    <span class="product-price">₹58</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                <div class="product-card food-grains-oils">
+                    <img src="Images/Kali Dal.jpg" alt="Kali Dal" class="product-image">
+                    <h3 class="product-title">Kali Dal</h3>
+                    <span class="product-price">₹195</span>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+
+
+            </div>
+        </div>
+    </main>
+
+    <aside class="cart">
+        <div class="cart-items">
+
+        </div>
+        <div class="cart-total">
+            Total: ₹0.00
+        </div>
+    </aside>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; Parash Grocery Store.</p>
+        </div>
+    </footer>
+
+    <script>
+
+        function toggleDropdown() {
+            const dropdown = document.querySelector('.dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+
+        function filterProducts(category) {
+            // hide all products
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                product.style.display = 'none';
+            });
+
+            // show selected category
+            const filteredProducts = document.querySelectorAll(`.${category}`);
+            filteredProducts.forEach(product => {
+                product.style.display = 'block';
+            });
+        }
+
+        // reset function
+        function resetFilter() {
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                product.style.display = 'block';
+            });
+        }
+
+        function redirectToPaymentPage() {
+            window.location.href = "payment.html";
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addToCartButtons = document.querySelectorAll('.btn-primary');
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+
+            function addToCart(event) {
+                const button = event.target;
+                const product = button.parentElement;
+                const productName = product.querySelector('.product-title').innerText;
+                const productPrice = product.querySelector('.product-price').innerText;
+
+                // new cart
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <span>${productName}</span>
+                    <span>${productPrice}</span>
+                `;
+
+                // add cart item to cart
+                const cart = document.querySelector('.cart-items');
+                cart.appendChild(cartItem);
+
+                // update cart total
+                updateCartTotal();
+            }
+
+            //  update cart total
+
+            function updateCartTotal() {
+                const cartItems = document.querySelectorAll('.cart-item');
+                let total = 0;
+                cartItems.forEach(cartItem => {
+                    const price = parseFloat(cartItem.querySelector('span:nth-child(2)').innerText.replace('₹', ''));
+                    total += price;
+                });
+                document.querySelector('.cart-total').innerText = `Total: ₹${total.toFixed(2)}`;
+            }
+
+        });
+
+        function redirectToPaymentPage() {
+            window.location.href = "payment.html";
+        }
+    </script>
+
+</body>
+
+</html>
